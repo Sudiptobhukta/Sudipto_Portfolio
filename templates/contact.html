@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}contact{% endblock title %}
+
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert shadow-alert alert-{{ message.tags }} d-flex  alert-dismissible fade show bg-success mb-0 rounded text-white"
+    style="--bs-bg-opacity: .5; height:min-content;" role="alert">
+    <svg class="bi flex-shrink-0 me-2" style="width: 20px; height:18px;" role="img" aria-label="Success:">
+        <use xlink:href="#check-circle-fill" />
+    </svg>
+    <strong>{{ message}}</strong>
+    <button type="button" class="btn-close pl-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<div class="container mx-auto my-4" style="width: 800px; height: 200%;">
+    <img src="/static/Contact me..png" class="img-fluid" alt="...">
+
+<hr>
+</div>
+
+<form method="post" class="text-white" action="/contact">
+    {% csrf_token %}
+    <div class="container pb-3" style="width: 500px;">
+        <div class="mb-4">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+        </div>
+        <div class="mb-4">
+            <label for="number" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" name="number" id="number" placeholder="9xxxxxxxx">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">About you</label>
+            <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
+        </div>
+
+        <div class="d-grid gap-2 col-2 mx-auto ">
+            <button type="submit" class="btn btn-outline-primary mx-auto text-white">Submit</button>
+        </div>
+
+
+
+    </div>
+</form>
+{% endblock body %}
